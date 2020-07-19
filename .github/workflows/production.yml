@@ -1,0 +1,29 @@
+---
+name: 'production'
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    # GitHub Actions itself does not respect [ci skip] message
+    if: "! contains(github.event.head_commit.message, '[ci skip]')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Apply
+        run: terraform apply
+
+      - name: Commit State
+        run: |
+          git config --global user.email "dns@chofu.tech"
+          git config --global user.name "chofutech-dns"
+          git add -f terraform.tfstate
+          git commit -m 'update terraform state [ci skip]'
+          git push origin production
