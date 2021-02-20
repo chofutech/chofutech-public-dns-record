@@ -1,0 +1,22 @@
+name: syntax check
+on:
+  push:
+    branches:
+      - "**"
+
+env:
+  TF_VAR_cloudflare_email: ${{ secrets.TF_VAR_cloudflare_email }}
+  TF_VAR_cloudflare_apikey: ${{ secrets.TF_VAR_cloudflare_apikey }}
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v1
+      - name: Terraform fmt
+        run: terraform fmt -check
+        continue-on-error: true
+      - name: Terraform Plan
+        run: terraform plan
+        continue-on-error: true

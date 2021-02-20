@@ -1,0 +1,29 @@
+name: apply
+on:
+  push:
+    branches:
+      - production
+
+env:
+  TF_VAR_cloudflare_email: ${{ secrets.TF_VAR_cloudflare_email }}
+  TF_VAR_cloudflare_apikey: ${{ secrets.TF_VAR_cloudflare_apikey }}
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v1
+      - name: Terraform fmt
+        run: terraform fmt -check
+      - name: Terraform plan
+        run: terraform plan
+      - name: Terraform apply
+        run: terraform apply
+      - name: push tfstate
+        run: |
+          git config --global user.email "dns@chofu.tech"
+          git config --global user.name "chofutech-dns"
+          git add -f terraform.tfstate
+          git commit -m "update terraform state [ci skip]"
+          git push origin production
