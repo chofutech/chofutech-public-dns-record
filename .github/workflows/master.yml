@@ -1,0 +1,28 @@
+---
+name: 'master'
+on:
+  push:
+    branches:
+      - master
+
+env:
+  TF_VAR_cloudflare_email: ${{ secrets.CLOUDFLARE_EMAIL }}
+  TF_VAR_cloudflare_api_key: ${{ secrets.CLOUDFLARE_APIKEY }}
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.14.x
+
+      - name: Terraform init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan -input=false
