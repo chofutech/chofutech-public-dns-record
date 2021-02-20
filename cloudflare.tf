@@ -12,11 +12,11 @@ variable "cloudflare_email" {
   description = "cloudflare email"
 }
 
-variable "cloudflare_api_key" {
-  description = "cloudflare api key"
+variable "cloudflare_api_token" {
+  description = "cloudflare api token"
 }
 
 provider "cloudflare" {
-  email   = var.cloudflare_email
-  api_key = var.cloudflare_api_key
+  email     = var.cloudflare_email
+  api_token = var.cloudflare_api_token
 }

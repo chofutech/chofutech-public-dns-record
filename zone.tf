@@ -1,3 +1,5 @@
-resource "cloudflare_zone" "chofu-tech" {
-    zone = "chofu.tech"
+data "cloudflare_zones" "chofu-tech" {
+  filter {
+    name = "chofu.tech"
+  }
 }
