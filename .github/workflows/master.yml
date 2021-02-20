@@ -7,7 +7,7 @@ on:
 
 env:
   TF_VAR_cloudflare_email: ${{ secrets.CLOUDFLARE_EMAIL }}
-  TF_VAR_cloudflare_api_key: ${{ secrets.CLOUDFLARE_APIKEY }}
+  TF_VAR_cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
 jobs:
   plan:
