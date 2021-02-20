@@ -6,10 +6,6 @@ on:
       - master
   pull_request: {}
 
-env:
-  TF_VAR_cloudflare_email: ${{ secrets.CLOUDFLARE_EMAIL }}
-  TF_VAR_cloudflare_api_key: ${{ secrets.CLOUDFLARE_APIKEY }}
-
 jobs:
   plan:
     runs-on: ubuntu-latest
@@ -27,6 +23,9 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan -input=false
+        env:
+          TF_VAR_cloudflare_email: ${{ secrets.CLOUDFLARE_EMAIL }}
+          TF_VAR_cloudflare_api_key: ${{ secrets.CLOUDFLARE_APIKEY }}
 
       - name: Debug
         if: ${{ always() }}
