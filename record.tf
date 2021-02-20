@@ -52,6 +52,7 @@ resource "cloudflare_record" "mail_chofu_tech_MX" {
   name = "mail.chofu.tech"
   value = "mail.chofu.tech."
   type = "MX"
+  priority = 1
 }
 
 resource "cloudflare_record" "kokubun01_chofu_tech_AAAA" {
