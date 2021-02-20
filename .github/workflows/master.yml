@@ -27,3 +27,7 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan -input=false
+
+      - name: Debug
+        if: ${{ always() }}
+        uses: mxschmitt/action-tmate@v3
