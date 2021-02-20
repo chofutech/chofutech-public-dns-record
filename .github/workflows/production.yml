@@ -28,7 +28,7 @@ jobs:
         run: terraform plan -input=false
 
       - name: Terraform Apply
-        run: terraform apply
+        run: terraform apply -auto-approve 
 
       - name: Commit State
         run: |
