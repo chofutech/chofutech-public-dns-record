@@ -50,7 +50,7 @@ resource "cloudflare_record" "mail_chofu_tech_A" {
 resource "cloudflare_record" "mail_chofu_tech_MX" {
   zone_id = lookup(data.cloudflare_zones.chofu-tech.zones[0], "id")
   name = "mail.chofu.tech"
-  value = "mail.chofu.tech"
+  value = "mail.chofu.tech."
   type = "MX"
 }
 
