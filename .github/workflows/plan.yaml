@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - "**"
+  pull_request: {}
 
 env:
   TF_VAR_cloudflare_email: ${{ secrets.TF_VAR_cloudflare_email }}
