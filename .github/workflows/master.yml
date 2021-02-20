@@ -5,6 +5,10 @@ on:
     branches:
       - master
 
+env:
+  TF_VAR_cloudflare_email: ${{ secrets.TF_VAR_CLOUDFLARE_EMAIL }}
+  TF_VAR_cloudflare_apikey: ${{ secrets.TF_VAR_CLOUDFLARE_APIKEY }}
+
 jobs:
   plan:
     runs-on: ubuntu-latest
