@@ -28,7 +28,7 @@ resource "cloudflare_record" "anchor_chofu_tech_AAAA" {
 
 resource "cloudflare_record" "anchor_chofu_tech_TXT_google" {
   zone_id = lookup(data.cloudflare_zones.chofu-tech.zones[0], "id")
-  name = "anchor"
+  name = ""
   value = "google-site-verification=wiv2lGVJTfLOaToG4WJuHZ9Kh9IfoaDtaHBtG4fofso"
   type = "TXT"
 }
